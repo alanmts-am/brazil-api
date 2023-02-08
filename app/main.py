@@ -6,12 +6,9 @@ app = FastAPI()
 paises = Paises()
 
 @app.get('/paises')
-async def get_municipios():
+async def get_paises():
     return paises.getAll()
 
 @app.get('/paises/{id}')
-async def get_municipios(id:int):
-    ps = paises.getAll()
-    for p in ps:
-        if p['id'] == id:
-            return p
+async def get_paises_id(id:int):
+    return paises.getById(id)
