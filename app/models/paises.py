@@ -26,3 +26,12 @@ class Paises:
         for p in self.getAll():
             if p['id'] == id:
                 return p
+
+    def getNamesOnly(self):
+        nomes = []
+        for p in self.getAll():
+            nome = {}
+            nome['nome'] = p['nome']
+            nomes.append(nome)
+        
+        return nomes
