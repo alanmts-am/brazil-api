@@ -2,14 +2,13 @@ import json as j
 
 class Paises:
     def __init__(self) -> None:
-        pass
+        with open('./app/archives/paises.json', 'rb') as f:
+            self.json = j.load(f)
 
     def getAll(self):
         paises = []
-        with open('./app/archives/paises.json', 'rb') as f:
-            json = j.load(f)
 
-        for p in json:
+        for p in self.json:
             pais = {}
             pais['id'] = p['id']['M49']
             siglas = []
@@ -22,3 +21,8 @@ class Paises:
             paises.append(pais)
         
         return paises
+
+    def getById(self, id:int):
+        for p in self.getAll():
+            if p['id'] == id:
+                return p
