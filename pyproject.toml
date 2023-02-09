@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "dados-ibge-api"
+name = "ibge-api"
 version = "0.1.0"
 description = "Projeto com dados da API pública do IBGE"
 authors = ["alanmts-am <alanmts.am@gmail.com>"]
