@@ -6,7 +6,7 @@ class Estados:
         with open('./app/archives/estados.json', 'rb') as f:
             self.json = j.load(f)
     
-    def getAll(self):
+    def get_all(self):
         estados = []
 
         for e in self.json:
@@ -20,18 +20,18 @@ class Estados:
 
         return estados
     
-    def getEstadoById(self, id:int):
-        for e in self.getAll():
+    def get_by_id(self, id:int):
+        for e in self.get_all():
             if e['id'] == id:
                 return e
             
-    def getNamesOnly(self):
+    def get_names_only(self):
         estados = []
 
-        for e in self.getAll():
+        for e in self.get_all():
             estado = {}
             estado['nome'] = e['nome']
 
             estados.append(estado)
 
-        return sorted(estados, key=itemgetter("nome") )
+        return sorted(estados, key=itemgetter("nome"))

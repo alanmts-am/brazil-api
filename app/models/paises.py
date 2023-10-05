@@ -6,7 +6,7 @@ class Paises:
         with open('./app/archives/paises.json', 'rb') as f:
             self.json = j.load(f)
 
-    def getAll(self):
+    def get_all(self):
         paises = []
 
         for p in self.json:
@@ -23,14 +23,14 @@ class Paises:
         
         return paises
 
-    def getById(self, id:int):
-        for p in self.getAll():
+    def get_by_id(self, id:int):
+        for p in self.get_all():
             if p['id'] == id:
                 return p
 
-    def getNamesOnly(self):
+    def get_names_only(self):
         nomes = []
-        for p in self.getAll():
+        for p in self.get_all():
             nome = {}
             nome['nome'] = p['nome']
             nomes.append(nome)
