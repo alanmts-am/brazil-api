@@ -1,4 +1,5 @@
 import json as j
+from operator import itemgetter
 
 class Estados:
     def __init__(self) -> None:
@@ -33,4 +34,4 @@ class Estados:
 
             estados.append(estado)
 
-        return estados
+        return sorted(estados, key=itemgetter("nome") )
