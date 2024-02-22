@@ -1,16 +1,33 @@
-## Projeto ibge-api 
+# IBGE API 
 
-Esta ideia engloba uma forma mais direta de lidar com os dados do IBGE
+Esta ideia engloba uma forma mais direta de lidar com os dados do IBGE.
 
-Os dados carregados no momento pela API são:
+## Como rodar
 
-* Países 
-* Estados
+O projeto utiliza Poetry para gerenciar todas as dependências. Ele deve ser instalado a depender da máquina.
 
-As URLs base são as seguintes
+Ubuntu/Debian (apt)
 
-* /paises
-* /estados
+```Shell
+apt install poetry
+```
+
+Para instalar todas as dependências
+
+```Shell
+poetry install
+```
+
+Para rodar a API localmente
+```Shell
+poetry run uvicorn app.main:app --host 0.0.0.0 --port {PORTA}
+```
+
+## Dados carregados pela API
+
+- [X] Países (/paises)
+- [X] Estados (/estados)
+- [ ] Municípios (/municipios)
 
 Todos os endpoints serão os mesmos a depender da sua url base
 
