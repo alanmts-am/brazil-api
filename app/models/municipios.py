@@ -1,4 +1,5 @@
 import json as j
+from operator import itemgetter
 
 
 class Municipio:
@@ -23,3 +24,13 @@ class Municipio:
             if municipio['id'] == id:
                 return municipio
         return {'error': 'Município não encontrado'}
+
+    def get_names_only(self):
+        municipios = []
+
+        for m in self.get_all():
+            municipio = {}
+            municipio['nome'] = m['nome']
+            municipios.append(municipio)
+
+        return sorted(municipios, key=itemgetter('nome'))
