@@ -36,3 +36,11 @@ class Regioes:
             regioes.append(regiao)
 
         return sorted(regioes, key=itemgetter("nome"))
+
+    def get_estados_from_regiao(self, estados: list, id_regiao: int):
+        estados_regiao = []
+        for estado in estados:
+            if estado['regiao']['id'] == id_regiao:
+                estados_regiao.append(estado)
+
+        return estados_regiao
