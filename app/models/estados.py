@@ -1,5 +1,5 @@
 import json as j
-from operator import itemgetter
+from app.models.response import Response as res
 
 
 class Estado:
@@ -8,9 +8,7 @@ class Estado:
             self.json = j.load(f)
 
     def get_all(self):
-        estados_dict = {}
         estados = []
-        estados_dict['status'] = 'OK'
 
         for e in self.json:
             estado = {}
@@ -21,41 +19,30 @@ class Estado:
 
             estados.append(estado)
 
-        estados_dict['estados'] = estados
-        return estados_dict
+        return res.sucess('estados', estados)
 
     def get_by_id(self, id: int):
-        estado_dict = {}
         estado = []
-        estado_dict['status'] = 'OK'
 
         for e in self.get_all()['estados']:
             if e['id'] == id:
                 estado.append(e)
 
-        estado_dict['estado'] = estado
-        return estado_dict
+        return res.sucess('estado', estado)
 
     def get_names_only(self):
         estados_nome = []
-        estados = {}
-        estados['status'] = 'OK'
 
-        for e in self.get_all():
+        for e in self.get_all()['estados']:
             estados_nome.append(e['nome'])
 
-        estados['nomes'] = sorted(estados_nome)
-
-        return estados
+        return res.sucess('nomes', sorted(estados_nome))
 
     def get_municipios_from_estado(self, municipios: list, id_estado: int):
-        municipios_estado_dict = {}
         municipios_estado = []
-        municipios_estado_dict['status'] = 'OK'
 
         for municipio in municipios:
             if municipio['estado']['id'] == id_estado:
                 municipios_estado.append(municipio)
-        municipios_estado_dict['municipios'] = municipios_estado
 
-        return municipios_estado_dict
+        return res.sucess('municipios', municipios_estado)
