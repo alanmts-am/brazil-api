@@ -22,13 +22,9 @@ class Estado:
         return res.sucess('estados', estados)
 
     def get_by_id(self, id: int):
-        estado = []
-
         for e in self.get_all()['estados']:
             if e['id'] == id:
-                estado.append(e)
-
-        return res.sucess('estado', estado)
+                return res.sucess('estado', [e])
 
     def get_names_only(self):
         estados_nome = []
