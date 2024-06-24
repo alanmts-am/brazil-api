@@ -22,6 +22,30 @@ Para rodar a API localmente
 ```Shell
 poetry run uvicorn app.main:app --host 0.0.0.0 --port {PORTA}
 ```
+## Ambiente virtual
+
+Para um melhor funcionamento do projeto em sua máquina, é interessante que seja startado em um ambiente virtual. Nesse caso, pode-se usar virtualenv do Python
+
+```Shell
+pip install virtualenv
+```
+Depois basta indicar a basta da env para o python modules
+
+```Shell
+python3 -m venv {NOME_PASTA}
+```
+
+Para entrar no ambiente, basta chamar o binário
+
+```Shell
+source {NOME_PASTA}/bin/activate
+```
+
+Estando no ambiente, para sair basta chamar o binário
+
+```Shell
+deactivate
+```
 
 ## Dados carregados pela API
 
