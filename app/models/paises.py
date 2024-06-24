@@ -1,7 +1,8 @@
 import json as j
 from operator import itemgetter
 
-class Paises:
+
+class Pais:
     def __init__(self) -> None:
         with open('./app/archives/paises.json', 'rb') as f:
             self.json = j.load(f)
@@ -20,10 +21,10 @@ class Paises:
             pais['regiao'] = p['sub-regiao']['regiao']['nome']
             pais['sub-regiao'] = p['sub-regiao']['nome']
             paises.append(pais)
-        
+
         return paises
 
-    def get_by_id(self, id:int):
+    def get_by_id(self, id: int):
         for p in self.get_all():
             if p['id'] == id:
                 return p
@@ -34,5 +35,5 @@ class Paises:
             nome = {}
             nome['nome'] = p['nome']
             nomes.append(nome)
-        
+
         return sorted(nomes, key=itemgetter("nome"))

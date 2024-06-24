@@ -2,7 +2,7 @@ import json as j
 from operator import itemgetter
 
 
-class Estados:
+class Estado:
     def __init__(self) -> None:
         with open('./app/archives/estados.json', 'rb') as f:
             self.json = j.load(f)

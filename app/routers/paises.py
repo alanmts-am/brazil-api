@@ -1,9 +1,9 @@
 from fastapi import APIRouter
-from app.models.paises import Paises
+from app.models.paises import Pais
 
 
 paises_router = APIRouter()
-paises = Paises()
+paises = Pais()
 
 
 @paises_router.get('/')

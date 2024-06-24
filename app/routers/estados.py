@@ -1,10 +1,10 @@
 from fastapi import APIRouter
-from app.models.estados import Estados
+from app.models.estados import Estado
 from app.models.municipios import Municipio
 
 
 estados_router = APIRouter()
-estados = Estados()
+estados = Estado()
 municipios = Municipio()
 
 

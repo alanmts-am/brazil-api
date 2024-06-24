@@ -2,7 +2,7 @@ import json as j
 from operator import itemgetter
 
 
-class Regioes:
+class Regiao:
     def __init__(self) -> None:
         with open('./app/archives/regioes.json', 'rb') as f:
             self.json = j.load(f)
