@@ -9,7 +9,7 @@ O projeto utiliza Poetry para gerenciar todas as dependências. Ele deve ser ins
 Ubuntu/Debian (apt)
 
 ```Shell
-apt install poetry
+pip install poetry
 ```
 
 Para instalar todas as dependências
