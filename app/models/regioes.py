@@ -1,5 +1,6 @@
 import json as j
 from operator import itemgetter
+from app.models.response import Response as res
 
 
 class Regiao:
@@ -17,10 +18,10 @@ class Regiao:
             regiao['nome'] = r['nome']
             regioes.append(regiao)
 
-        return regioes
+        return res.sucess('regioes', regioes)
 
     def get_by_id(self, id: int) -> list:
-        regioes = self.get_all()
+        regioes = self.get_all()['regioes']
 
         for regiao in regioes:
             if (regiao['id'] == id):
@@ -30,12 +31,10 @@ class Regiao:
     def get_names_only(self) -> list:
         regioes = []
 
-        for r in self.get_all():
-            regiao = {}
-            regiao['nome'] = r['nome']
-            regioes.append(regiao)
+        for r in self.get_all()['regioes']:
+            regioes.append(r['nome'])
 
-        return sorted(regioes, key=itemgetter("nome"))
+        return res.sucess('regiao', sorted(regioes))
 
     def get_estados(self, estados: list, id_regiao: int):
         estados_regiao = []
@@ -43,21 +42,23 @@ class Regiao:
             if estado['regiao']['id'] == id_regiao:
                 estados_regiao.append(estado)
 
-        return estados_regiao
+        return res.sucess('estados', estados_regiao)
 
-    def get_estado(self, estados: list, id_regiao: int, id_estado: int):
-        estados_regiao = self.get_estados(
-            estados, id_regiao)
-
-        for estado in estados_regiao:
-            if estado['id'] == id_estado:
-                return estado
-
-    def get_municipio(self, municipios: list, id_regiao: int, id_estado: int, id_municipio: int):
+    def get_municipios_from_estado(self, municipios: list, id_regiao: int, id_estado: int):
         municipios_estado = []
 
         for municipio in municipios:
-            if municipio['id'] == id_municipio and municipio['estado']['id'] == id_estado and municipio['estado']['regiao']['id'] == id_regiao:
+            if municipio['estado']['id'] == id_estado and municipio['estado']['regiao']['id'] == id_regiao:
                 municipios_estado.append(municipio)
 
-        return municipios_estado
+        return res.sucess('municipios', municipios_estado)
+
+    def get_estado(self, estados: list, id_regiao: int, id_estado: int):
+        for estado in estados:
+            if estado['id'] == id_estado and estado['regiao']['id'] == id_regiao:
+                return res.sucess('estado', [estado])
+
+    def get_municipio(self, municipios: list, id_regiao: int, id_estado: int, id_municipio: int):
+        for municipio in municipios:
+            if municipio['id'] == id_municipio and municipio['estado']['id'] == id_estado and municipio['estado']['regiao']['id'] == id_regiao:
+                return res.sucess('estado', [municipio])

@@ -36,10 +36,7 @@ async def get_estado_from_regiao(id_regiao: int, id_estado: int):
 
 @regioes_router.get('/{id_regiao}/estados/{id_estado}/municipios')
 async def get_municipios_from_estado(id_regiao: int, id_estado: int):
-    estado = regioes.get_estado(
-        estados.get_all()['estados'], id_regiao, id_estado)
-
-    return estados.get_municipios_from_estado(municipios.get_all()['municipios'], estado['id'])
+    return regioes.get_municipios_from_estado(municipios.get_all()['municipios'], id_regiao, id_estado)
 
 
 @regioes_router.get('/{id_regiao}/estados/{id_estado}/municipios/{id_municipio}')

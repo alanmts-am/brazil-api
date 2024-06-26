@@ -33,12 +33,3 @@ class Estado:
             estados_nome.append(e['nome'])
 
         return res.sucess('nomes', sorted(estados_nome))
-
-    def get_municipios_from_estado(self, municipios: list, id_estado: int):
-        municipios_estado = []
-
-        for municipio in municipios:
-            if municipio['estado']['id'] == id_estado:
-                municipios_estado.append(municipio)
-
-        return res.sucess('municipios', municipios_estado)
