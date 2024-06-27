@@ -1,7 +1,7 @@
-from app.routers.paises import paises_router
-from app.routers.estados import estado_router
-from app.routers.regioes import regiao_router
-from app.routers.municipios import municipio_router
+from app.routers.pais_router import paises_router
+from app.routers.estado_router import estado_router
+from app.routers.regiao_router import regiao_router
+from app.routers.municipio_router import municipio_router
 
 from fastapi import FastAPI
 
