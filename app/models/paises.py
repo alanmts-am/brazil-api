@@ -1,9 +1,10 @@
 import json as j
-from app.models.response import Response as res
+from app.models.response import Response
 
 
 class Pais:
     def __init__(self) -> None:
+        self.response = Response()
         with open('./app/archives/paises.json', 'rb') as f:
             self.json = j.load(f)
 
@@ -22,16 +23,16 @@ class Pais:
             pais['sub-regiao'] = p['sub-regiao']['nome']
             paises.append(pais)
 
-        return res.sucess('paises', paises)
+        return self.response.sucess('paises', paises)
 
     def get_by_id(self, id: int):
         for p in self.get_all()['paises']:
             if p['id'] == id:
-                return res.sucess('pais', [p])
+                return self.response.sucess('pais', [p])
 
     def get_names_only(self):
         nomes = []
         for p in self.get_all()['paises']:
             nomes.append(p['nome'])
 
-        return res.sucess('nomes', sorted(nomes))
+        return self.response.sucess('nomes', sorted(nomes))

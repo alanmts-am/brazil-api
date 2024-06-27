@@ -1,9 +1,10 @@
 import json as j
-from app.models.response import Response as res
+from app.models.response import Response
 
 
 class Estado:
     def __init__(self) -> None:
+        self.response = Response()
         with open('./app/archives/estados.json', 'rb') as f:
             self.json = j.load(f)
 
@@ -19,12 +20,12 @@ class Estado:
 
             estados.append(estado)
 
-        return res.sucess('estados', estados)
+        return self.response.sucess('estados', estados)
 
     def get_by_id(self, id: int):
         for e in self.get_all()['estados']:
             if e['id'] == id:
-                return res.sucess('estado', [e])
+                return self.response.sucess('estado', [e])
 
     def get_names_only(self):
         estados_nome = []
@@ -32,4 +33,4 @@ class Estado:
         for e in self.get_all()['estados']:
             estados_nome.append(e['nome'])
 
-        return res.sucess('nomes', sorted(estados_nome))
+        return self.response.sucess('nomes', sorted(estados_nome))
