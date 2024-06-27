@@ -1,23 +1,23 @@
 from fastapi import APIRouter
-from app.models.municipios import Municipio
+from app.service.municipio_service import MunicipioService
 from app.models.response import Response
 
 
-municipios_router = APIRouter()
+municipio_router = APIRouter()
 response = Response()
-municipios = Municipio(response)
+municipio_service = MunicipioService(response)
 
 
-@municipios_router.get('/')
+@municipio_router.get('/')
 async def get_all_municipios():
-    return municipios.get_all()
+    return municipio_service.get_all()
 
 
-@municipios_router.get('/nomes')
+@municipio_router.get('/nomes')
 async def get_municipios_name_only():
-    return municipios.get_names_only()
+    return municipio_service.get_names_only()
 
 
-@municipios_router.get('/{id}')
+@municipio_router.get('/{id}')
 async def get_municipio_by_id(id: int):
-    return municipios.get_by_id(id)
+    return municipio_service.get_by_id(id)
