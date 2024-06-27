@@ -1,6 +1,6 @@
 import json as j
 from app.models.response import Response
-from app.models.paises import Pais
+from app.models.pais import Pais
 from app.utils.read_json import get_json
 
 
@@ -10,7 +10,7 @@ class PaisService:
         self.response = response
         pass
 
-    def get_data(self):
+    def get_data(self) -> list[Pais]:
         paises = []
 
         for p in get_json(self.file_path):
