@@ -1,9 +1,10 @@
 import json as j
-from operator import itemgetter
+from app.models.response import Response
 
 
 class Pais:
-    def __init__(self) -> None:
+    def __init__(self, response: Response) -> None:
+        self.response = response
         with open('./app/archives/paises.json', 'rb') as f:
             self.json = j.load(f)
 
@@ -22,18 +23,16 @@ class Pais:
             pais['sub-regiao'] = p['sub-regiao']['nome']
             paises.append(pais)
 
-        return paises
+        return self.response.sucess('paises', paises)
 
     def get_by_id(self, id: int):
-        for p in self.get_all():
+        for p in self.get_all()['paises']:
             if p['id'] == id:
-                return p
+                return self.response.sucess('pais', [p])
 
     def get_names_only(self):
         nomes = []
-        for p in self.get_all():
-            nome = {}
-            nome['nome'] = p['nome']
-            nomes.append(nome)
+        for p in self.get_all()['paises']:
+            nomes.append(p['nome'])
 
-        return sorted(nomes, key=itemgetter("nome"))
+        return self.response.sucess('nomes', sorted(nomes))

@@ -1,9 +1,10 @@
 import json as j
-from operator import itemgetter
+from app.models.response import Response
 
 
 class Municipio:
-    def __init__(self) -> None:
+    def __init__(self, response: Response) -> None:
+        self.response = response
         with open('./app/archives/municipios.json', 'rb') as f:
             self.json = j.load(f)
 
@@ -17,20 +18,18 @@ class Municipio:
             municipio['estado'] = m['microrregiao']['mesorregiao']['UF']
             municipios.append(municipio)
 
-        return municipios
+        return self.response.sucess('municipios', municipios)
 
     def get_by_id(self, id: int):
-        for municipio in self.get_all():
+        for municipio in self.get_all()['municipios']:
             if municipio['id'] == id:
-                return municipio
-        return {'error': 'Município não encontrado'}
+                return self.response.sucess('municipio', [municipio])
+        return self.response.error('Município não encontrado')
 
     def get_names_only(self):
         municipios = []
 
-        for m in self.get_all():
-            municipio = {}
-            municipio['nome'] = m['nome']
-            municipios.append(municipio)
+        for m in self.get_all()['municipios']:
+            municipios.append(m['nome'])
 
-        return sorted(municipios, key=itemgetter('nome'))
+        return self.response.sucess('municipios', sorted(municipios))
