@@ -3,8 +3,8 @@ from app.models.response import Response
 
 
 class Municipio:
-    def __init__(self) -> None:
-        self.response = Response()
+    def __init__(self, response: Response) -> None:
+        self.response = response
         with open('./app/archives/municipios.json', 'rb') as f:
             self.json = j.load(f)
 

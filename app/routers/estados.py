@@ -1,11 +1,13 @@
 from fastapi import APIRouter
 from app.models.estados import Estado
 from app.models.municipios import Municipio
+from app.models.response import Response
 
 
 estados_router = APIRouter()
-estados = Estado()
-municipios = Municipio()
+response = Response()
+estados = Estado(response)
+municipios = Municipio(response)
 
 
 @estados_router.get('/')
@@ -25,4 +27,4 @@ async def get_estados_by_id(id: int):
 
 @estados_router.get('/{id}/municipios')
 async def get_municipios_by_estado(id: int):
-    return estados.get_municipios_from_estado(municipios.get_all(), id)
+    return estados.get_municipios(municipios.get_all(), id)

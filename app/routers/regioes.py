@@ -2,11 +2,14 @@ from fastapi import APIRouter
 from app.models.regioes import Regiao
 from app.models.estados import Estado
 from app.models.municipios import Municipio
+from app.models.response import Response
 
 regioes_router = APIRouter()
-regioes = Regiao()
-estados = Estado()
-municipios = Municipio()
+response = Response()
+
+regioes = Regiao(response)
+estados = Estado(response)
+municipios = Municipio(response)
 
 
 @regioes_router.get('/')
@@ -36,7 +39,7 @@ async def get_estado_from_regiao(id_regiao: int, id_estado: int):
 
 @regioes_router.get('/{id_regiao}/estados/{id_estado}/municipios')
 async def get_municipios_from_estado(id_regiao: int, id_estado: int):
-    return regioes.get_municipios_from_estado(municipios.get_all()['municipios'], id_regiao, id_estado)
+    return regioes.get_municipios(municipios.get_all()['municipios'], id_regiao, id_estado)
 
 
 @regioes_router.get('/{id_regiao}/estados/{id_estado}/municipios/{id_municipio}')

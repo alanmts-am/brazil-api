@@ -3,8 +3,8 @@ from app.models.response import Response
 
 
 class Estado:
-    def __init__(self) -> None:
-        self.response = Response()
+    def __init__(self, response: Response) -> None:
+        self.response = response
         with open('./app/archives/estados.json', 'rb') as f:
             self.json = j.load(f)
 
@@ -34,3 +34,6 @@ class Estado:
             estados_nome.append(e['nome'])
 
         return self.response.sucess('nomes', sorted(estados_nome))
+
+    def get_municipios(self, municipios: list, id_estado: int):
+        return []

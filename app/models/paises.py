@@ -3,8 +3,8 @@ from app.models.response import Response
 
 
 class Pais:
-    def __init__(self) -> None:
-        self.response = Response()
+    def __init__(self, response: Response) -> None:
+        self.response = response
         with open('./app/archives/paises.json', 'rb') as f:
             self.json = j.load(f)
 
