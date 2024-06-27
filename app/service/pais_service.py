@@ -27,16 +27,16 @@ class PaisService:
         return paises
 
     def get_all(self):
-        return self.response.sucess('paises', self.get_data())
+        return self.response.sucess(self.get_data())
 
     def get_by_id(self, id: int):
         for pais in self.get_data():
             if pais.id == id:
-                return self.response.sucess('pais', [pais])
+                return self.response.sucess([pais])
 
     def get_names_only(self):
         nomes = []
         for pais in self.get_data():
             nomes.append(pais.nome)
 
-        return self.response.sucess('nomes', sorted(nomes))
+        return self.response.sucess(sorted(nomes))

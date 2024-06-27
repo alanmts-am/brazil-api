@@ -29,12 +29,12 @@ class MunicipioService:
         return municipios
 
     def get_all(self):
-        return self.response.sucess('municipios', self.get_data())
+        return self.response.sucess(self.get_data())
 
     def get_by_id(self, id: int):
         for municipio in self.get_data():
             if municipio.id == id:
-                return self.response.sucess('municipio', [municipio])
+                return self.response.sucess([municipio])
         return self.response.error('Município não encontrado')
 
     def get_names_only(self):
@@ -43,4 +43,4 @@ class MunicipioService:
         for municipio in self.get_data():
             municipios.append(municipio.nome)
 
-        return self.response.sucess('municipios', sorted(municipios))
+        return self.response.sucess(sorted(municipios))

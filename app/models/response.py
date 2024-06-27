@@ -1,23 +1,22 @@
 from datetime import datetime
+from app.interface.response_interface import IResponse
 
 
-class Response:
+class Response(IResponse):
     def __init__(self) -> None:
         pass
 
-    def base_response(self, status: str):
-        return {'status': status, 'datetime': datetime.now()}
-
-    def sucess(self, key: str, value: list, extra_dict: dict = {}) -> dict:
-        dict = self.base_response('OK')
+    def sucess(self, value: list[dict]) -> dict:
+        dict = {}
+        dict['status'] = 'OK'
+        dict['datetime'] = datetime.now()
         dict['count'] = len(value)
-        if extra_dict != {}:
-            for _key, _value in extra_dict.items():
-                dict[_key] = _value
-        dict[key] = value
+        dict['data'] = value
         return dict
 
     def error(self, message: str) -> dict:
-        dict = self.base_response('ERROR')
+        dict = {}
+        dict['status'] = 'ERROR'
+        dict['datetime'] = datetime.now()
         dict['message'] = message
         return dict

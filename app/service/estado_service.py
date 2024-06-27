@@ -1,11 +1,11 @@
 from app.models.estado import Estado
 from app.models.regiao import Regiao
-from app.models.response import Response
+from app.interface.response_interface import IResponse
 from app.utils.read_json import get_json
 
 
 class EstadoService:
-    def __init__(self, response: Response) -> None:
+    def __init__(self, response: IResponse) -> None:
         self.response = response
         self.file_path = './app/archives/estados.json'
         pass
@@ -27,12 +27,12 @@ class EstadoService:
         return estados
 
     def get_all(self):
-        return self.response.sucess('estados', self.get_data())
+        return self.response.sucess(self.get_data())
 
     def get_by_id(self, id: int):
         for regiao in self.get_data():
             if regiao.id == id:
-                return self.response.sucess('estado', [regiao])
+                return self.response.sucess([regiao])
 
     def get_names_only(self):
         estados_nome = []
@@ -40,4 +40,4 @@ class EstadoService:
         for regiao in self.get_data():
             estados_nome.append(regiao.nome)
 
-        return self.response.sucess('nomes', sorted(estados_nome))
+        return self.response.sucess(sorted(estados_nome))
