@@ -1,13 +1,11 @@
 import json as j
-from app.models.response import Response
 from app.models.pais import Pais
 from app.utils.read_json import get_json
 
 
 class PaisService:
-    def __init__(self, response: Response) -> None:
+    def __init__(self) -> None:
         self.file_path = './app/archives/paises.json'
-        self.response = response
         pass
 
     def get_data(self) -> list[Pais]:
@@ -27,27 +25,29 @@ class PaisService:
 
         return paises
 
-    def get_all(self):
+    def get_all(self) -> dict[Pais]:
         try:
-            return self.response.sucess(self.get_data())
+            return self.get_data()
         except Exception as e:
-            return self.response.error(f"Erro ao buscar dados dos países: {e}")
+            print(str(e))
+            return None
 
-    def get_by_id(self, id: int):
+    def get_by_id(self, id: int) -> Pais:
         try:
             for pais in self.get_data():
                 if pais.id == id:
-                    return self.response.sucess([pais])
-            return self.response.error("País não encontrado")
-        except:
-            return self.response.error("Erro ao tentar buscar dados do país")
+                    return pais
+            return []
+        except Exception as e:
+            print(str(e))
+            return None
 
-    def get_names_only(self):
+    def get_names_only(self) -> list[str]:
         try:
             nomes: list[str] = []
             for pais in self.get_data():
                 nomes.append(pais.nome)
 
-            return self.response.sucess(sorted(nomes))
+            return nomes
         except:
-            return self.response.error("Erro ao buscar os nomes dos países")
+            return []
