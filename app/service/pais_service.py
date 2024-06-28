@@ -21,7 +21,8 @@ class PaisService:
             nome = p['nome']
             regiao = p['sub-regiao']['regiao']['nome']
             sub_regiao = p['sub-regiao']['nome']
-            pais = Pais(id, siglas, nome, regiao, sub_regiao)
+            pais = Pais(id=id, siglas=siglas, nome=nome,
+                        regiao=regiao, sub_regiao=sub_regiao)
             paises.append(pais)
 
         return paises
@@ -29,8 +30,8 @@ class PaisService:
     def get_all(self):
         try:
             return self.response.sucess(self.get_data())
-        except:
-            return self.response.error("Erro ao buscar dados dos países")
+        except Exception as e:
+            return self.response.error(f"Erro ao buscar dados dos países: {e}")
 
     def get_by_id(self, id: int):
         try:
