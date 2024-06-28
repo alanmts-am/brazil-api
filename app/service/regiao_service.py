@@ -1,35 +1,25 @@
 from app.models.regiao import Regiao
 from app.models.estado import Estado
 from app.models.municipio import Municipio
-from app.utils.read_json import get_json
+
+from app.repository.regiao_repository import RegiaoRepository
 
 
 class RegiaoService:
     def __init__(self) -> None:
-        self.file_path = './app/archives/regioes.json'
+        self.respository = RegiaoRepository()
         pass
-
-    def get_data(self) -> list[Regiao]:
-        regioes: list[Regiao] = []
-
-        for r in get_json(self.file_path):
-            id = r['id']
-            sigla = r['sigla']
-            nome = r['nome']
-            regiao = Regiao(id, sigla, nome)
-            regioes.append(regiao)
-        return regioes
 
     def get_all(self) -> list[Regiao]:
         try:
-            return self.get_data()
+            return self.respository.get_paises()
         except Exception as e:
             print(e)
             return None
 
     def get_by_id(self, id: int) -> Regiao:
         try:
-            regioes = self.get_data()
+            regioes = self.respository.get_paises()
 
             for regiao in regioes:
                 if (regiao.id == id):
@@ -43,7 +33,7 @@ class RegiaoService:
         try:
             regioes: list[Regiao] = []
 
-            for regiao in self.get_data():
+            for regiao in self.respository.get_paises():
                 regioes.append(regiao.nome)
 
             return sorted(regioes)
