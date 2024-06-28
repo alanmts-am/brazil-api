@@ -1,41 +1,23 @@
 from app.models.municipio import Municipio
-from app.models.estado import Estado
-from app.models.regiao import Regiao
-from app.utils.read_json import get_json
+
+from app.repository.municipio_repository import MunicipioRepository
 
 
 class MunicipioService:
     def __init__(self) -> None:
-        self.file_path = './app/archives/municipios.json'
+        self.repository = MunicipioRepository()
         pass
-
-    def get_data(self) -> list[Municipio]:
-        municipios: list[Municipio] = []
-
-        for m in get_json(self.file_path):
-            id = m['id']
-            nome = m['nome']
-            estado_ = m['microrregiao']['mesorregiao']['UF']
-            regiao_ = estado_['regiao']
-
-            regiao = Regiao(regiao_['id'], regiao_['sigla'], regiao_['nome'])
-            estado = Estado(estado_['id'], estado_['sigla'],
-                            estado_['nome'], regiao)
-            municipio = Municipio(id, nome, estado)
-            municipios.append(municipio)
-
-        return municipios
 
     def get_all(self) -> list[Municipio]:
         try:
-            return self.get_data()
+            return self.repository.get_municipios()
         except Exception as e:
             print(e)
             return None
 
     def get_by_id(self, id: int) -> Municipio:
         try:
-            for municipio in self.get_data():
+            for municipio in self.repository.get_municipios():
                 if municipio.id == id:
                     return municipio
             return []
@@ -47,7 +29,7 @@ class MunicipioService:
         try:
             municipios: list[Municipio] = []
 
-            for municipio in self.get_data():
+            for municipio in self.repository.get_municipios():
                 municipios.append(municipio.nome)
 
             return sorted(municipios)
