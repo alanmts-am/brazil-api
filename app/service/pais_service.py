@@ -27,16 +27,26 @@ class PaisService:
         return paises
 
     def get_all(self):
-        return self.response.sucess(self.get_data())
+        try:
+            return self.response.sucess(self.get_data())
+        except:
+            return self.response.error("Erro ao buscar dados dos países")
 
     def get_by_id(self, id: int):
-        for pais in self.get_data():
-            if pais.id == id:
-                return self.response.sucess([pais])
+        try:
+            for pais in self.get_data():
+                if pais.id == id:
+                    return self.response.sucess([pais])
+            return self.response.error("País não encontrado")
+        except:
+            return self.response.error("Erro ao tentar buscar dados do país")
 
     def get_names_only(self):
-        nomes = []
-        for pais in self.get_data():
-            nomes.append(pais.nome)
+        try:
+            nomes: list[str] = []
+            for pais in self.get_data():
+                nomes.append(pais.nome)
 
-        return self.response.sucess(sorted(nomes))
+            return self.response.sucess(sorted(nomes))
+        except:
+            return self.response.error("Erro ao buscar os nomes dos países")

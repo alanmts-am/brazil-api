@@ -27,17 +27,28 @@ class EstadoService:
         return estados
 
     def get_all(self):
-        return self.response.sucess(self.get_data())
+        try:
+            return self.response.sucess(self.get_data())
+        except:
+            return self.response.error("Erro ao buscar dados dos estados")
 
     def get_by_id(self, id: int):
-        for regiao in self.get_data():
-            if regiao.id == id:
-                return self.response.sucess([regiao])
+        try:
+            for regiao in self.get_data():
+                if regiao.id == id:
+                    return self.response.sucess([regiao])
+
+            return self.response.error("Estado não encontrado")
+        except:
+            return self.response.error("Erro ao buscar dados do estado")
 
     def get_names_only(self):
-        estados_nome = []
+        try:
+            estados_nome: list[str] = []
 
-        for regiao in self.get_data():
-            estados_nome.append(regiao.nome)
+            for regiao in self.get_data():
+                estados_nome.append(regiao.nome)
 
-        return self.response.sucess(sorted(estados_nome))
+            return self.response.sucess(sorted(estados_nome))
+        except:
+            return self.response.error("Erro ao buscar os nomes dos estados")

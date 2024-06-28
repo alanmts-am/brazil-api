@@ -29,18 +29,27 @@ class MunicipioService:
         return municipios
 
     def get_all(self):
-        return self.response.sucess(self.get_data())
+        try:
+            return self.response.sucess(self.get_data())
+        except:
+            return self.response.error("Erro ao buscar dados dos municípios")
 
     def get_by_id(self, id: int):
-        for municipio in self.get_data():
-            if municipio.id == id:
-                return self.response.sucess([municipio])
-        return self.response.error('Município não encontrado')
+        try:
+            for municipio in self.get_data():
+                if municipio.id == id:
+                    return self.response.sucess([municipio])
+            return self.response.error("Município não encontrado")
+        except:
+            return self.response.error("Erro ao buscar dados do município")
 
     def get_names_only(self):
-        municipios: list[Municipio] = []
+        try:
+            municipios: list[Municipio] = []
 
-        for municipio in self.get_data():
-            municipios.append(municipio.nome)
+            for municipio in self.get_data():
+                municipios.append(municipio.nome)
 
-        return self.response.sucess(sorted(municipios))
+            return self.response.sucess(sorted(municipios))
+        except:
+            return self.response.error("Erro ao buscar os nomes dos municípios")
