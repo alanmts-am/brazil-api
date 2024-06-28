@@ -1,11 +1,9 @@
 from fastapi import APIRouter
 from app.service.municipio_service import MunicipioService
-from app.models.response import Response
 
 
 municipio_router = APIRouter()
-response = Response()
-municipio_service = MunicipioService(response)
+municipio_service = MunicipioService()
 
 
 @municipio_router.get('/')

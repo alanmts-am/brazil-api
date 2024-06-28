@@ -1,6 +1,7 @@
-class Regiao:
-    def __init__(self, id, sigla, nome) -> None:
-        self.id = id
-        self.sigla = sigla
-        self.nome = nome
-        pass
+from pydantic import BaseModel
+
+
+class Regiao(BaseModel):
+    id: int
+    sigla: str
+    nome: str

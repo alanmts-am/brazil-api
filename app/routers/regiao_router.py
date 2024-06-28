@@ -2,14 +2,12 @@ from fastapi import APIRouter
 from app.service.regiao_service import RegiaoService
 from app.service.estado_service import EstadoService
 from app.service.municipio_service import MunicipioService
-from app.models.response import Response
 
 regiao_router = APIRouter()
-response = Response()
-regiao_service = RegiaoService(response)
+regiao_service = RegiaoService()
 
-estado_service = EstadoService(response)
-municipios = MunicipioService(response)
+estado_service = EstadoService()
+municipios = MunicipioService()
 
 
 @regiao_router.get('/')

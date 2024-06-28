@@ -1,13 +1,11 @@
 from app.models.municipio import Municipio
 from app.models.estado import Estado
 from app.models.regiao import Regiao
-from app.models.response import Response
 from app.utils.read_json import get_json
 
 
 class MunicipioService:
-    def __init__(self, response: Response) -> None:
-        self.response = response
+    def __init__(self) -> None:
         self.file_path = './app/archives/municipios.json'
         pass
 
@@ -28,28 +26,30 @@ class MunicipioService:
 
         return municipios
 
-    def get_all(self):
+    def get_all(self) -> list[Municipio]:
         try:
-            return self.response.sucess(self.get_data())
-        except:
-            return self.response.error("Erro ao buscar dados dos municípios")
+            return self.get_data()
+        except Exception as e:
+            print(e)
+            return None
 
-    def get_by_id(self, id: int):
+    def get_by_id(self, id: int) -> Municipio:
         try:
             for municipio in self.get_data():
                 if municipio.id == id:
-                    return self.response.sucess([municipio])
-            return self.response.error("Município não encontrado")
-        except:
-            return self.response.error("Erro ao buscar dados do município")
+                    return municipio
+            return []
+        except Exception as e:
+            print(e)
+            return None
 
-    def get_names_only(self):
+    def get_names_only(self) -> list[str]:
         try:
             municipios: list[Municipio] = []
 
             for municipio in self.get_data():
                 municipios.append(municipio.nome)
 
-            return self.response.sucess(sorted(municipios))
+            return sorted(municipios)
         except:
-            return self.response.error("Erro ao buscar os nomes dos municípios")
+            return None
