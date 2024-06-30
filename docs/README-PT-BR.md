@@ -57,3 +57,5 @@ Todos os endpoints serão os mesmos a depender da sua url base
 * /{base} - lista todos os dados sobre
 * /{base}/{id} - lista os dados de um especificamente
 * /{base}/nomes - retorna apenas os nomes de cada um
+
+Para saber todos os endpoints da API, basta ir em "/docs" assim que ela iniciar
