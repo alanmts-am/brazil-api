@@ -48,8 +48,8 @@ deactivate
 ## Dados carregados pela API
 
 - [X] Países (/paises)
-- [X] Estados (/estados)
 - [X] Regiões (/regioes)
+- [X] Estados (/estados)
 - [X] Municípios (/municipios)
 
 Para saber todos os endpoints da API, basta ir em "/docs" assim que ela iniciar

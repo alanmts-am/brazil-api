@@ -50,10 +50,10 @@ deactivate
 ## Data Loaded by the API
 
 - [X] Countries
-- [X] States
 - [X] Regions
+- [X] States
 - [X] Cities
-- 
+  
 To get all endpoints and what they returns, go to endpoint "/docs" when it starts
 
 ## Next Step!!
