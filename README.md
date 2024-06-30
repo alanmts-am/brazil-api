@@ -1,66 +1,63 @@
-# IBGE API 
+# BRAZIL API 
 
-Esta ideia engloba uma forma mais direta de lidar com os dados do IBGE.
+[README, PT-BR](docs/README-PT-BR.md)
 
-## Como rodar
+ This idea encompasses a more direct way of dealing with data from Brazil.
 
-O projeto utiliza Poetry para gerenciar todas as dependências. Ele deve ser instalado a depender da máquina.
+## How to Run
 
-Ubuntu/Debian (apt)
+The project uses Poetry to manage all dependencies. It should be installed depending on the machine.
+
+Ubuntu/Debian
 
 ```Shell
 pip install poetry
 ```
 
-Para instalar todas as dependências
+To install all dependencies
 
 ```Shell
 poetry install
 ```
 
-Para rodar a API localmente
+To run the API locally
 ```Shell
 poetry run uvicorn app.main:app --host 0.0.0.0 --port {PORTA}
 ```
-## Ambiente virtual
+## Virtual Environment
 
-Para um melhor funcionamento do projeto em sua máquina, é interessante que seja startado em um ambiente virtual. Nesse caso, pode-se usar virtualenv do Python
+For better project performance on your machine, it is recommended to start it in a virtual environment. In this case, you can use Python's virtualenv.
 
 ```Shell
 pip install virtualenv
 ```
-Depois basta indicar a basta da env para o python modules
+Then, specify the folder for the Python modules
 
 ```Shell
 python3 -m venv {NOME_PASTA}
 ```
 
-Para entrar no ambiente, basta chamar o binário
+To activate the virtual environment, run the following command
 
 ```Shell
 source {NOME_PASTA}/bin/activate
 ```
 
-Estando no ambiente, para sair basta chamar o binário
+While in the virtual environment, to deactivate it, run
 
 ```Shell
 deactivate
 ```
 
-## Dados carregados pela API
+## Data Loaded by the API
 
-- [X] Países (/paises)
-- [X] Estados (/estados)
-- [ ] Regiões (/regioes)
-- [ ] Municípios (/municipios)
+- [X] Countries (/countries)
+- [X] States (/states)
+- [X] Regions (/regions)
+- [X] Cities (/cities)
 
-Todos os endpoints serão os mesmos a depender da sua url base
+All endpoints will be the same depending on your base URL
 
-* /{base} - lista todos os dados sobre
-* /{base}/{id} - lista os dados de um especificamente
-* /{base}/nomes - retorna apenas os nomes de cada um
-
-Os endpoints devem ter as seguintes parâmetros opcionais
-* action - indica uma ação a ser feita na listagem
-  * count - conta o retorno da sua pesquisa
-* limit - retorna quantos items você deseja
+* /{base} - lists all data about the entity
+* /{base}/{id} - lists data of a specific entity
+* /{base}/names - returns only the names of each entity
