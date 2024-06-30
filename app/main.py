@@ -10,18 +10,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-async def http_not_found(request, exc):
-    return JSONResponse(content={'status': exc.status_code, 'message': 'Not found'}, status_code=exc.status_code)
-
-exception_handlers = {
-    404: http_not_found
-}
-
 app = FastAPI(title="IBGE API",
               description="This a IBGE api service to get data from countries, states, regions and cities",
-              version=os.getenv("API_VERSION"),
-              exception_handlers=exception_handlers)
+              version=os.getenv("API_VERSION"))
 app.mount(path=os.getenv("API_BASE_PATH"), app=app)
 
 app.include_router(paises_router, prefix='/paises', tags=['paises'])
@@ -33,4 +24,4 @@ app.include_router(municipio_router, prefix='/municipios',
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome! This is a IBGE Api service"}
+    return {"message": "Bem vindo!"}
