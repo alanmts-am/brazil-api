@@ -53,11 +53,11 @@ deactivate
 - [X] States
 - [X] Regions
 - [X] Cities
-
-All endpoints will be the same depending on your base URL
-
-* /{base} - lists all data about the entity
-* /{base}/{id} - lists data of a specific entity
-* /{base}/names - returns only the names of each entity
-
+- 
 To get all endpoints and what they returns, go to endpoint "/docs" when it starts
+
+## Next Step!!
+
+- [ ] New endpoints
+- [ ] Parameter to filter, count, limit and others
+- [ ] Docker support
