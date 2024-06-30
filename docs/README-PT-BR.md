@@ -4,9 +4,7 @@ Esta ideia engloba uma forma mais direta de lidar com os dados do IBGE.
 
 ## Como rodar
 
-O projeto utiliza Poetry para gerenciar todas as dependências. Ele deve ser instalado a depender da máquina.
-
-Ubuntu/Debian
+O projeto utiliza Poetry para gerenciar todas as dependências. Utilize o pip ou outro gerenciador para baixar.
 
 ```Shell
 pip install poetry
