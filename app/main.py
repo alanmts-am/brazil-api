@@ -1,27 +1,26 @@
 import os
-from app.routers.pais_router import paises_router
-from app.routers.estado_router import estado_router
-from app.routers.regiao_router import regiao_router
-from app.routers.municipio_router import municipio_router
+from app.routers.country_router import country_router
+from app.routers.state_router import state_router
+from app.routers.region_router import region_router
+from app.routers.city_router import city_router
 
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 
 load_dotenv()
 
-app = FastAPI(title="IBGE API",
-              description="This a IBGE api service to get data from countries, states, regions and cities",
+app = FastAPI(title="BRAZIL API",
+              description="This a BRAZIL api service to get data from countries, states, regions and cities",
               version=os.getenv("API_VERSION"))
 app.mount(path=os.getenv("API_BASE_PATH"), app=app)
 
-app.include_router(paises_router, prefix='/paises', tags=['paises'])
-app.include_router(estado_router, prefix='/estados', tags=['estados'])
-app.include_router(regiao_router, prefix='/regioes', tags=['regioes'])
-app.include_router(municipio_router, prefix='/municipios',
-                   tags=['municipios'])
+app.include_router(country_router, prefix='/countries', tags=['countries'])
+app.include_router(state_router, prefix='/states', tags=['states'])
+app.include_router(region_router, prefix='/regions', tags=['regions'])
+app.include_router(city_router, prefix='/cities',
+                   tags=['cities'])
 
 
 @app.get("/")
 async def root():
-    return {"message": "Bem vindo!"}
+    return {"message": "Welcome!"}

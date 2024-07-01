@@ -1,23 +1,23 @@
-from app.models.estado import Estado
+from app.models.state import State
 
-from app.repository.estado_repository import EstadoRepository
+from app.repository.state_repository import StateRepository
 
 
-class EstadoService:
+class StateService:
     def __init__(self) -> None:
-        self.repository = EstadoRepository()
+        self.repository = StateRepository()
         pass
 
-    def get_all(self) -> list[Estado]:
+    def get_all(self) -> list[State]:
         try:
-            return self.repository.get_estados()
+            return self.repository.get_states()
         except Exception as e:
             print(e)
             return None
 
-    def get_by_id(self, id: int) -> Estado:
+    def get_by_id(self, id: int) -> State:
         try:
-            for regiao in self.repository.get_estados():
+            for regiao in self.repository.get_states():
                 if regiao.id == id:
                     return regiao
 
@@ -30,8 +30,8 @@ class EstadoService:
         try:
             estados_nome: list[str] = []
 
-            for regiao in self.repository.get_estados():
-                estados_nome.append(regiao.nome)
+            for regiao in self.repository.get_states():
+                estados_nome.append(regiao.name)
 
             return estados_nome
         except Exception as e:
