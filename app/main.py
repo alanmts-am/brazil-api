@@ -8,19 +8,19 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 
 load_dotenv()
+API_BASE_PATH = os.getenv("API_BASE_PATH")
+API_VERSION = os.getenv("API_VERSION")
 
 app = FastAPI(title="BRAZIL API",
               description="This a BRAZIL api service to get data from countries, states, regions and cities",
-              version=os.getenv("API_VERSION"))
-app.mount(path=os.getenv("API_BASE_PATH"), app=app)
+              version=API_VERSION)
+app.mount(API_BASE_PATH, app=app)
 
-app.include_router(country_router, prefix='/countries', tags=['countries'])
-app.include_router(state_router, prefix='/states', tags=['states'])
-app.include_router(region_router, prefix='/regions', tags=['regions'])
-app.include_router(city_router, prefix='/cities',
-                   tags=['cities'])
-
-
-@app.get("/")
-async def root():
-    return {"message": "Welcome!"}
+app.include_router(
+    country_router, prefix=f'{API_BASE_PATH}/countries', tags=['countries'])
+app.include_router(
+    state_router, prefix=f'{API_BASE_PATH}/states', tags=['states'])
+app.include_router(
+    region_router, prefix=f'{API_BASE_PATH}/regions', tags=['regions'])
+app.include_router(
+    city_router, prefix=f'{API_BASE_PATH}/cities', tags=['cities'])
