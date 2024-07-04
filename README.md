@@ -1,10 +1,31 @@
 # BRAZIL API 
 
-[README, PT-BR](docs/README-PT-BR.md)
+[PT-BR](docs/README-PT-BR.md)
 
  This idea encompasses a more direct way of dealing with data from Brazil.
 
 ## How to Run
+
+### Docker
+
+Build your image
+
+```Shell
+docker build -t {IMAGE_NAME} .
+```
+Run container
+
+```Shell
+docker run -d -p {CONTAINER_PORT}:{YOUR_PORT} {IMAGE_NAME}
+```
+
+By default, the port is 5555
+
+```Shell
+docker run -d -p 5555:5555 {NOME_IMAGEM}
+```
+
+### Directly
 
 The project uses Poetry to manage all dependencies. Use pip or other manager to download.
 
@@ -22,30 +43,6 @@ To run the API locally
 ```Shell
 poetry run uvicorn app.main:app --host 0.0.0.0 --port {PORTA}
 ```
-## Virtual Environment
-
-For better project performance on your machine, it is recommended to start it in a virtual environment. In this case, you can use Python's virtualenv.
-
-```Shell
-pip install virtualenv
-```
-Then, specify the folder for the Python modules
-
-```Shell
-python3 -m venv {NAME_FOLDER}
-```
-
-To activate the virtual environment, run the following command
-
-```Shell
-source {NAME_FOLDER}/bin/activate
-```
-
-While in the virtual environment, to deactivate it, run
-
-```Shell
-deactivate
-```
 
 ## Data Loaded by the API
 
@@ -60,4 +57,3 @@ To get all endpoints and what they returns, go to endpoint "/docs" when it start
 
 - [ ] New endpoints
 - [ ] Parameter to filter, count, limit and others
-- [ ] Docker support
