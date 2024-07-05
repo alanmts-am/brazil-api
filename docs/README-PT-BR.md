@@ -4,6 +4,27 @@ Esta ideia engloba uma forma mais direta de lidar com os dados do IBGE.
 
 ## Como rodar
 
+## Docker
+
+Construa sua imagem
+
+```Shell
+docker build -t {NOME_IMAGEM} .
+```
+
+Inicie o container
+
+```Shell
+docker run -d -p {PORTA_CONTAINER}:{SUA_PORTA} {NOME_IMAGEM}
+```
+Por padrão, a porta é 5555
+
+```Shell
+docker run -d -p 5555:5555 {NOME_IMAGEM}
+```
+
+## Ambiente Virtual
+
 O projeto utiliza Poetry para gerenciar todas as dependências. Utilize o pip ou outro gerenciador para baixar.
 
 ```Shell
@@ -20,30 +41,6 @@ Para rodar a API localmente
 ```Shell
 poetry run uvicorn app.main:app --host 0.0.0.0 --port {PORTA}
 ```
-## Ambiente virtual
-
-Para um melhor funcionamento do projeto em sua máquina, é interessante que seja startado em um ambiente virtual. Nesse caso, pode-se usar virtualenv do Python
-
-```Shell
-pip install virtualenv
-```
-Depois basta indicar a basta da env para o python modules
-
-```Shell
-python3 -m venv {NOME_PASTA}
-```
-
-Para entrar no ambiente, basta chamar o binário
-
-```Shell
-source {NOME_PASTA}/bin/activate
-```
-
-Estando no ambiente, para sair basta chamar o binário
-
-```Shell
-deactivate
-```
 
 ## Dados carregados pela API
 
@@ -58,4 +55,3 @@ Para saber todos os endpoints da API, basta ir em "/docs" assim que ela iniciar
 
 - [ ] Novos endpoints
 - [ ] Parâmetro para filtrar, contar, limitar e outros
-- [ ] Suporte a Docker
