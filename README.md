@@ -1,5 +1,7 @@
 # BRAZIL API 
 
+![Brazil flag GIF](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3N1NHRwZDZ1b2k2MnNqdWhwNDB4NHJ3MXQwcGdqbHZvMGp0MGNjciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bIqdxoOVJ2oak/giphy.gif)
+
 [PT-BR](docs/README-PT-BR.md)
 
  This idea encompasses a more direct way of dealing with data from Brazil.

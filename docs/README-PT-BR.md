@@ -1,5 +1,7 @@
 # BRAZIL API 
 
+![GIF da bandeira do Brasil](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3N1NHRwZDZ1b2k2MnNqdWhwNDB4NHJ3MXQwcGdqbHZvMGp0MGNjciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bIqdxoOVJ2oak/giphy.gif)
+
 Esta ideia engloba uma forma mais direta de lidar com os dados do IBGE.
 
 ## Como rodar
