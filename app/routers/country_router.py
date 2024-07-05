@@ -7,7 +7,7 @@ country_router = APIRouter()
 country_service = CountryService()
 
 
-@country_router.get('/', response_model=List[Country])
+@country_router.get('', response_model=List[Country])
 async def get_countries(contains: str = Query(None, min_length=3)):
     return country_service.get_all(contains)
 

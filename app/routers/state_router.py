@@ -8,7 +8,7 @@ state_router = APIRouter()
 state_service = StateService()
 
 
-@ state_router.get('/', response_model=List[State])
+@ state_router.get('', response_model=List[State])
 async def get_states(contains: str = Query(None, min_length=3)):
     return state_service.get_all(contains)
 

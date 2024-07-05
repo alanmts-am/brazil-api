@@ -14,7 +14,7 @@ state_service = StateService()
 city_service = CityService()
 
 
-@region_router.get('/', response_model=List[Region])
+@region_router.get('', response_model=List[Region])
 async def get_regions(contains: str = Query(None, min_length=3)):
     return region_service.get_all(contains)
 

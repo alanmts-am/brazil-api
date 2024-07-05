@@ -8,7 +8,7 @@ city_router = APIRouter()
 city_service = CityService()
 
 
-@city_router.get('/', response_model=List[City])
+@city_router.get('', response_model=List[City])
 async def get_all_cities(contains: str = Query(None, min_length=3)):
     return city_service.get_all(contains)
 
