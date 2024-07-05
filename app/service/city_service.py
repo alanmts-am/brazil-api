@@ -8,9 +8,19 @@ class CityService:
         self.repository = CityRepository()
         pass
 
-    def get_all(self) -> list[City]:
+    def get_all(self, contains: str) -> list[City]:
         try:
-            return self.repository.get_cities()
+            cities = self.repository.get_cities()
+            searched_cities: list[City] = []
+
+            if contains != None:
+                for city in cities:
+                    if contains.lower() in city.name.lower():
+                        searched_cities.append(city)
+                return searched_cities
+            else:
+                return cities
+
         except Exception as e:
             print(e)
             return None
