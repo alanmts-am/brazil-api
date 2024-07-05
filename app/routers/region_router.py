@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from app.models.region import Region
 from app.models.state import State
 from app.models.city import City
@@ -15,8 +15,8 @@ city_service = CityService()
 
 
 @region_router.get('/', response_model=List[Region])
-async def get_regions():
-    return region_service.get_all()
+async def get_regions(contains: str = Query(None, min_length=3)):
+    return region_service.get_all(contains)
 
 
 @region_router.get('/names', response_model=List[str])

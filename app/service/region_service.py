@@ -10,9 +10,19 @@ class RegionService:
         self.respository = RegionRepository()
         pass
 
-    def get_all(self) -> list[Region]:
+    def get_all(self, contains: str) -> list[Region]:
         try:
-            return self.respository.get_regions()
+            regions = self.respository.get_regions()
+            searched_regions: list[Region] = []
+
+            if contains != None:
+                for region in regions:
+                    if contains.lower() in region.name.lower():
+                        searched_regions.append(region)
+                return searched_regions
+            else:
+                return regions
+
         except Exception as e:
             print(e)
             return None
