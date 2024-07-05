@@ -1,15 +1,16 @@
 [tool.poetry]
-name = "dados-ibge-api"
-version = "0.1.0"
-description = "Projeto com dados da API pública do IBGE"
+name = "brazil-api"
+version = "1.0.0"
+description = "Project with data from the IBGE public API"
 authors = ["alanmts-am <alanmts.am@gmail.com>"]
 readme = "README.md"
-packages = [{include = "dados_ibge_api"}]
+packages = [{include = "data_brazil_api"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = "^0.89.1"
 uvicorn = "^0.20.0"
+python-dotenv = "^1.0.1"
 
 
 [build-system]
