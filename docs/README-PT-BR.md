@@ -54,4 +54,4 @@ Para saber todos os endpoints da API, basta ir em "/docs" assim que ela iniciar
 ## Próximo Passo!!
 
 - [ ] Novos endpoints
-- [ ] Parâmetro para filtrar, contar, limitar e outros
+- [X] Parâmetro para filtrar

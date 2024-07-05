@@ -56,4 +56,4 @@ To get all endpoints and what they returns, go to endpoint "/docs" when it start
 ## Next Step!!
 
 - [ ] New endpoints
-- [ ] Parameter to filter, count, limit and others
+- [X] Parameter to filter

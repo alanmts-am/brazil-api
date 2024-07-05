@@ -8,9 +8,18 @@ class StateService:
         self.repository = StateRepository()
         pass
 
-    def get_all(self) -> list[State]:
+    def get_all(self, contains: str) -> list[State]:
         try:
-            return self.repository.get_states()
+            states = self.repository.get_states()
+            searched_states: list[State] = []
+
+            if contains != None:
+                for state in states:
+                    if contains.lower() in state.name.lower():
+                        searched_states.append(state)
+                return searched_states
+            else:
+                return states
         except Exception as e:
             print(e)
             return None
