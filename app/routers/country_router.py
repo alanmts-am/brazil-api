@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from app.service.country_service import CountryService
 from app.models.country import Country
 from typing import List
@@ -8,8 +8,8 @@ country_service = CountryService()
 
 
 @country_router.get('/', response_model=List[Country])
-async def get_countries():
-    return country_service.get_all()
+async def get_countries(contains: str = Query(None, min_length=3)):
+    return country_service.get_all(contains)
 
 
 @ country_router.get('/names', response_model=List[str])

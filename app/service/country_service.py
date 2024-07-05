@@ -7,9 +7,20 @@ class CountryService:
         self.respository = CountryRepository()
         pass
 
-    def get_all(self) -> list[Country]:
+    def get_all(self, search: str) -> list[Country]:
         try:
-            return self.respository.get_countries()
+            countries = self.respository.get_countries()
+            searched_countries: list[Country] = []
+
+            if search != None:
+                for country in countries:
+                    if search.lower() in country.name.lower():
+                        searched_countries.append(country)
+
+                return searched_countries
+            else:
+                return countries
+
         except Exception as e:
             print(str(e))
             return None
